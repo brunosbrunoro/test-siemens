@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create Equipment!</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()"></button>
+</div>
+<div class="modal-body">
+  <form  [formGroup]="form">
+    <div class="form-group m-1">
+      <label for="nameEquipment">Name</label>
+      <input type="text" class="form-control" id="nameEquipment" placeholder="Enter name" [formControlName]="'name'">
+      <div class="invalid-feedback" *ngIf="form.get('name').hasError('required')">
+        Enter the name
+      </div>
+    </div>
+    <div class="form-group m-1">
+      <label for="dataType">Data type</label>
+      <input type="text" class="form-control" id="dataType" placeholder="Data Type" [formControlName]="'dataType'">
+      <div class="invalid-feedback" *ngIf="form.get('dataType').hasError('required')">
+        Enter the data type
+      </div>
+    </div>
+    <div class="form-group m-1">
+      <label for="value">Value</label>
+      <input type="text" class="form-control" id="value" placeholder="Value" [formControlName]="'value'">
+      <div class="invalid-feedback" *ngIf="form.get('value').hasError('required')">
+        Enter the value
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-primary m-1" (click)="save()">Save</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Close</button>
+</div>

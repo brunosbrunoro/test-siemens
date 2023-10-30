@@ -1,0 +1,82 @@
+<header>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand">Manager Equipments</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<main class="flex-shrink-0">
+  <div class="container p-5">
+    <h1 class="mt-5">List Equipments</h1>
+    <div class="row">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="form-group">
+            <input class="form-control" placeholder="Find equipments" type="text" (keyup)="updateFilter($event)"/>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-primary" (click)="createEquipment()">Create Equipment</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-12">
+          <ngx-datatable
+            #equipmentsTable
+            [columnMode]="'flex'"
+                         [footerHeight]="50"
+                         [headerHeight]="50"
+                         [rowHeight]="60"
+                         [rows]="list"
+                         [limit]="20"
+                         class="bootstrap fullscreen">
+
+            <ngx-datatable-row-detail [rowHeight]="'100%'">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                <div style="padding-left:35px;">
+                  <list-point [equipmentId]="row._id"/>
+                </div>
+              </ng-template>
+            </ngx-datatable-row-detail>
+
+            <ngx-datatable-column [flexGrow]="0.5">
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <button class="btn btn-secondary" (click)="toggleExpandRow(row)" ngbTooltip="Expand" placement="top" type="button"><i class="fas fa-chevron-down"></i></button>
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Edit" [flexGrow]="0.5" >
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <button class="btn btn-secondary" (click)="updateEquipment(row._id)" ngbTooltip="Edit" placement="top" type="button"><i class="fas fa-edit"></i></button>
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Delete" [flexGrow]="0.5" >
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <button class="btn btn-secondary" (click)="deleteEquipment(row._id)" ngbTooltip="Delete" placement="top" type="button"><i class="fas fa-trash"></i></button>
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [flexGrow]="2" name="Serial Number" prop="serialNumber"></ngx-datatable-column>
+            <ngx-datatable-column [flexGrow]="4" name="Name" prop="name"></ngx-datatable-column>
+
+
+          </ngx-datatable>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+

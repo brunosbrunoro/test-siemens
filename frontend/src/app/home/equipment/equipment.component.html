@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create Equipment!</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()"></button>
+</div>
+<div class="modal-body">
+  <form  [formGroup]="form">
+    <div class="form-group m-1">
+      <label for="nameEquipment">Name</label>
+      <input type="text" class="form-control" id="nameEquipment" placeholder="Enter name" [formControlName]="'name'">
+      <div class="invalid-feedback" *ngIf="form.get('name').hasError('required')">
+        Enter the name
+      </div>
+    </div>
+    <div class="form-group m-1">
+      <label for="serialNumber">Serial Number</label>
+      <input type="text" class="form-control" id="serialNumber" placeholder="Serial Number" [formControlName]="'serialNumber'">
+      <div class="invalid-feedback" *ngIf="form.get('serialNumber').hasError('required')">
+        Enter the serial number
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-primary m-1" (click)="save()">Save</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Close</button>
+</div>
